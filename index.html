@@ -3,56 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprehensive Personal Finance Tracker</title>
+    <title>Monthly Personal Finance Tracker</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
+            background-color: #f5f3e7; /* Cream color */
+            color: #333; /* Dark text for contrast */
         }
         .container {
             max-width: 800px;
             margin: auto;
-            background: white;
+            background: #fff;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
         h1, h2 {
-            color: #333;
+            color: #333; /* Darker text for headings */
         }
         input, select {
             width: calc(100% - 16px);
-            padding: 8px;
+            padding: 12px;
             margin-bottom: 10px;
+            background-color: #f5f5f5; /* Light background for inputs */
+            color: #333; /* Dark text */
+            border: 2px solid #1e1e1e; /* Matte black border */
+            border-radius: 5px;
         }
         button {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #1e1e1e; /* Matte black */
+            color: #fff;
             padding: 10px 15px;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
-            margin-right: 10px;
+            transition: background-color 0.3s ease;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #333; /* Slightly lighter matte black on hover */
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            color: #333;
         }
         th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+            border: 1px solid #1e1e1e; /* Matte black border */
+            padding: 10px;
             text-align: left;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #1e1e1e; /* Matte black headers */
+            color: #fff;
         }
         .chart-container {
             position: relative;
@@ -62,26 +70,19 @@
         }
         .section {
             margin-bottom: 20px;
-            border: 1px solid #ddd;
+            border: 1px solid #1e1e1e; /* Matte black border */
             padding: 15px;
-            border-radius: 5px;
+            border-radius: 10px;
+            background-color: #fff; /* White section background */
         }
-        .delete-btn {
-            background-color: #f44336;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        .delete-btn:hover {
-            background-color: #e53935;
+        #financeChart {
+            background-color: #f5f3e7; /* Cream chart background */
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Comprehensive Personal Finance Tracker</h1>
+        <h1>Monthly Personal Finance Tracker</h1>
         
         <div id="incomeSection" class="section">
             <h2>Income</h2>
@@ -135,6 +136,7 @@
                     <td>Total Income</td>
                     <td id="totalIncome">$0</td>
                 </tr>
+                <tbody id="expenseTable"></tbody>
                 <tr>
                     <td>Total Expenses</td>
                     <td id="totalExpenses">$0</td>
@@ -192,9 +194,38 @@
             }
         }
 
+        function addExpense() {
+            const amountElement = document.getElementById('expenseAmount');
+            const categoryElement = document.getElementById('expenseCategory');
+            const otherCategoryElement = document.getElementById('otherExpenseCategory');
+
+            const amount = parseFloat(amountElement.value);
+            let category = categoryElement.value;
+
+            if (category === 'Other') {
+                category = otherCategoryElement.value || 'Unspecified';
+            }
+
+            if (amount && category) {
+                const expenseId = expenses.length;
+                expenses.push({ id: expenseId, amount, category });
+                renderExpenseTable();
+                updateSummary();
+                resetExpenseInputs();
+            } else {
+                alert('Please enter both an expense amount and category');
+            }
+        }
+
         function deleteIncome(id) {
             incomes = incomes.filter(income => income.id !== id);
             renderIncomeTable();
+            updateSummary();
+        }
+
+        function deleteExpense(id) {
+            expenses = expenses.filter(expense => expense.id !== id);
+            renderExpenseTable();
             updateSummary();
         }
 
@@ -211,11 +242,31 @@
             });
         }
 
+        function renderExpenseTable() {
+            const expenseTable = document.getElementById('expenseTable');
+            expenseTable.innerHTML = '';
+            expenses.forEach(expense => {
+                const row = `<tr>
+                    <td>${expense.category}</td>
+                    <td>${expense.amount.toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</td>
+                    <td><button class="delete-btn" onclick="deleteExpense(${expense.id})">Delete</button></td>
+                </tr>`;
+                expenseTable.insertAdjacentHTML('beforeend', row);
+            });
+        }
+
         function resetIncomeInputs() {
             document.getElementById('incomeAmount').value = '';
             document.getElementById('incomeSource').value = '';
             document.getElementById('otherIncomeSource').value = '';
             document.getElementById('otherIncomeSource').style.display = 'none';
+        }
+
+        function resetExpenseInputs() {
+            document.getElementById('expenseAmount').value = '';
+            document.getElementById('expenseCategory').value = '';
+            document.getElementById('otherExpenseCategory').value = '';
+            document.getElementById('otherExpenseCategory').style.display = 'none';
         }
 
         function updateChart() {
@@ -251,11 +302,21 @@
         }
 
         document.getElementById('addIncomeBtn').addEventListener('click', addIncome);
+        document.getElementById('addExpenseBtn').addEventListener('click', addExpense);
+
         document.getElementById('incomeSource').addEventListener('change', function() {
             if (this.value === 'Other') {
                 document.getElementById('otherIncomeSource').style.display = 'block';
             } else {
                 document.getElementById('otherIncomeSource').style.display = 'none';
+            }
+        });
+
+        document.getElementById('expenseCategory').addEventListener('change', function() {
+            if (this.value === 'Other') {
+                document.getElementById('otherExpenseCategory').style.display = 'block';
+            } else {
+                document.getElementById('otherExpenseCategory').style.display = 'none';
             }
         });
     </script>
