@@ -2,8 +2,6 @@
 
 [Finance Manager Source Code](Finance-Manager.html)
 
-# Project Title
-
 ## Description
 
 This project implements [briefly describe the main functionality or purpose of the project, e.g., "a simple web application that allows users to track their tasks."] The implementation is designed to be user-friendly and efficient, leveraging modern web technologies.
