@@ -1,8 +1,6 @@
 # Nicolas DeTroia 
 **Last Updated 9/27/2024**
 
-Welcome to my portfolio website! This is a showcase of my skills, projects, and experiences in **Computer Science**, **Economics**, and **Statistics**.
-
 ## 🌐 Website
 
 **[nicolasdetroia.com](https://nicolasdetroia.com)**
