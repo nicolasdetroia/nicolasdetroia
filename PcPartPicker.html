@@ -1,1 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Parts Picker</title>
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown {
+    margin: 10px 0;
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #007BFF;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
+
+.dropdown:focus {
+    outline: none;
+    border-color: #0056b3;
+}
+
+label {
+    font-weight: bold;
+    margin: 10px 0 5px;
+    display: block;
+    color: #444;
+}
+
+.part-info {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+#total {
+    font-size: 1.5em;
+    margin-top: 20px;
+    text-align: center;
+    color: #007BFF;
+}
+
+.button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 10px 0;
+    display: block;
+    width: 100%;
+    font-size: 1.2em;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.recommendation {
+    background: #d1e7dd;
+    border-left: 6px solid #0f5132;
+    padding: 10px;
+    margin: 20px 0;
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #777;
+    font-size: 0.9em;
+}
+
+.footer-image {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+    <h1>PC Parts Picker</h1>
+
+    <label for="cpu-brand">Select CPU Brand:</label>
+    <select id="cpu-brand" onchange="updateCpuOptions()">
+        <option value="intel">Intel</option>
+        <option value="amd">AMD</option>
+    </select>
+
+    <div>
+        <label for="cpu">Select CPU:</label>
+        <select id="cpu" onchange="updateSelectedPart('cpu')"></select>
+        <div class="part-info" id="selected-cpu"></div>
+    </div>
+
+    <div>
+        <label for="motherboard">Select Motherboard:</label>
+        <select id="motherboard" onchange="updateSelectedPart('motherboard')"></select>
+        <div class="part-info" id="selected-motherboard"></div>
+    </div>
+
+    <div>
+        <label for="ram">Select RAM:</label>
+        <select id="ram" onchange="updateSelectedPart('ram')"></select>
+        <div class="part-info" id="selected-ram"></div>
+    </div>
+
+    <div>
+        <label for="gpu">Select GPU:</label>
+        <select id="gpu" onchange="updateSelectedPart('gpu')"></select>
+        <div class="part-info" id="selected-gpu"></div>
+    </div>
+
+    <div>
+        <label for="storage">Select Storage:</label>
+        <select id="storage" onchange="updateSelectedPart('storage')"></select>
+        <div class="part-info" id="selected-storage"></div>
+    </div>
+
+    <div>
+        <label for="case">Select Case:</label>
+        <select id="case" onchange="updateSelectedPart('case')"></select>
+        <div class="part-info" id="selected-case"></div>
+    </div>
+
+    <div>
+        <label for="psu">Select Power Supply:</label>
+        <select id="psu" onchange="updateSelectedPart('psu')"></select>
+        <div class="part-info" id="selected-psu"></div>
+    </div>
+
+    <label for="budget">Select Budget:</label>
+    <select id="budget" onchange="recommendParts()">
+        <option value="500">Up to $500</option>
+        <option value="1000">Up to $1000</option>
+        <option value="1500">Up to $1500</option>
+        <option value="2000">Up to $2000</option>
+        <option value="3000">Up to $3000</option>
+    </select>
+
+    <button id="recommend-button" onclick="recommendParts()">Recommend Parts</button>
+
+    <div id="total"></div>
+
+    <div id="graph">
+        <img src="path_to_your_image.jpg" alt="PC Parts" width="300">
+    </div>
+
+    <script>
+        const parts = {
+            intel: {
+                cpus: [
+                    { name: "Intel Core i3-10100", price: 120, link: "https://amzn.to/example1" },
+                    { name: "Intel Core i5-10400", price: 180, link: "https://amzn.to/example2" },
+                    { name: "Intel Core i7-10700K", price: 350, link: "https://amzn.to/example3" },
+                    { name: "Intel Core i9-10900K", price: 600, link: "https://amzn.to/example4" },
+                ],
+                motherboards: [
+                    { name: "ASUS Prime B460M-A", price: 100, link: "https://amzn.to/example5" },
+                    { name: "MSI B460M PRO-VDH", price: 90, link: "https://amzn.to/example6" },
+                    { name: "Gigabyte Z490 AORUS ELITE", price: 200, link: "https://amzn.to/example7" },
+                    { name: "ASRock B560 Steel Legend", price: 150, link: "https://amzn.to/example8" },
+                ],
+                rams: [
+                    { name: "Corsair Vengeance LPX 16GB DDR4", price: 70, link: "https://amzn.to/example9" },
+                    { name: "G.Skill Ripjaws V 32GB DDR4", price: 120, link: "https://amzn.to/example10" },
+                    { name: "Corsair Vengeance LPX 64GB DDR4", price: 250, link: "https://amzn.to/example11" },
+                    { name: "HyperX Fury 16GB DDR4", price: 75, link: "https://amzn.to/example12" },
+                ],
+                gpus: [
+                    { name: "NVIDIA GeForce GTX 1660 Super", price: 250, link: "https://amzn.to/example13" },
+                    { name: "NVIDIA GeForce RTX 3060", price: 400, link: "https://amzn.to/example14" },
+                    { name: "NVIDIA GeForce RTX 3070", price: 600, link: "https://amzn.to/example15" },
+                    { name: "NVIDIA GeForce RTX 3080", price: 800, link: "https://amzn.to/example16" },
+                ],
+                storage: [
+                    { name: "Samsung 970 EVO Plus 1TB SSD", price: 120, link: "https://amzn.to/example17" },
+                    { name: "Western Digital Blue 2TB HDD", price: 50, link: "https://amzn.to/example18" },
+                    { name: "WD Black SN850 1TB NVMe SSD", price: 250, link: "https://amzn.to/example19" },
+                    { name: "Crucial MX500 500GB SSD", price: 60, link: "https://amzn.to/example20" },
+                ],
+                cases: [
+                    { name: "Cooler Master MasterBox Q300L", price: 60, link: "https://amzn.to/example21" },
+                    { name: "NZXT H510", price: 70, link: "https://amzn.to/example22" },
+                    { name: "Fractal Design Meshify C", price: 100, link: "https://amzn.to/example23" },
+                    { name: "Lian Li PC-O11 Dynamic", price: 140, link: "https://amzn.to/example24" },
+                ],
+                psus: [
+                    { name: "EVGA 600 W1 600W", price: 50, link: "https://amzn.to/example25" },
+                    { name: "Corsair RM750x 750W", price: 120, link: "https://amzn.to/example26" },
+                    { name: "Seasonic Focus GX-850", price: 150, link: "https://amzn.to/example27" },
+                    { name: "Cooler Master MWE Gold 650W", price: 100, link: "https://amzn.to/example28" },
+                ]
+            },
+            amd: {
+                cpus: [
+                    { name: "AMD Ryzen 5 3600", price: 200, link: "https://amzn.to/example29" },
+                    { name: "AMD Ryzen 7 3700X", price: 300, link: "https://amzn.to/example30" },
+                    { name: "AMD Ryzen 9 5900X", price: 500, link: "https://amzn.to/example31" },
+                    { name: "AMD Ryzen 9 5950X", price: 800, link: "https://amzn.to/example32" },
+                ],
+                motherboards: [
+                    { name: "ASUS TUF Gaming B550M-PLUS", price: 150, link: "https://amzn.to/example33" },
+                    { name: "MSI B550-A PRO", price: 130, link: "https://amzn.to/example34" },
+                    { name: "Gigabyte B450 AORUS ELITE", price: 120, link: "https://amzn.to/example35" },
+                    { name: "ASRock X570 Phantom Gaming 4", price: 180, link: "https://amzn.to/example36" },
+                ],
+                rams: [
+                    { name: "Corsair Vengeance LPX 16GB DDR4", price: 70, link: "https://amzn.to/example37" },
+                    { name: "G.Skill Trident Z 32GB DDR4", price: 130, link: "https://amzn.to/example38" },
+                    { name: "Corsair Vengeance LPX 64GB DDR4", price: 250, link: "https://amzn.to/example39" },
+                    { name: "HyperX Fury 16GB DDR4", price: 75, link: "https://amzn.to/example40" },
+                ],
+                gpus: [
+                    { name: "AMD Radeon RX 5700 XT", price: 400, link: "https://amzn.to/example41" },
+                    { name: "AMD Radeon RX 6800", price: 600, link: "https://amzn.to/example42" },
+                    { name: "NVIDIA GeForce RTX 3060", price: 400, link: "https://amzn.to/example43" },
+                    { name: "NVIDIA GeForce RTX 3080", price: 800, link: "https://amzn.to/example44" },
+                ],
+                storage: [
+                    { name: "Samsung 970 EVO Plus 1TB SSD", price: 120, link: "https://amzn.to/example45" },
+                    { name: "Western Digital Blue 2TB HDD", price: 50, link: "https://amzn.to/example46" },
+                    { name: "WD Black SN850 1TB NVMe SSD", price: 250, link: "https://amzn.to/example47" },
+                    { name: "Crucial MX500 500GB SSD", price: 60, link: "https://amzn.to/example48" },
+                ],
+                cases: [
+                    { name: "Cooler Master MasterBox Q300L", price: 60, link: "https://amzn.to/example49" },
+                    { name: "NZXT H510", price: 70, link: "https://amzn.to/example50" },
+                    { name: "Fractal Design Meshify C", price: 100, link: "https://amzn.to/example51" },
+                    { name: "Lian Li PC-O11 Dynamic", price: 140, link: "https://amzn.to/example52" },
+                ],
+                psus: [
+                    { name: "EVGA 600 W1 600W", price: 50, link: "https://amzn.to/example53" },
+                    { name: "Corsair RM750x 750W", price: 120, link: "https://amzn.to/example54" },
+                    { name: "Seasonic Focus GX-850", price: 150, link: "https://amzn.to/example55" },
+                    { name: "Cooler Master MWE Gold 650W", price: 100, link: "https://amzn.to/example56" },
+                ]
+            }
+        };
+
+        function populateDropdowns() {
+            const cpuDropdown = document.getElementById('cpu');
+            const motherboardDropdown = document.getElementById('motherboard');
+            const ramDropdown = document.getElementById('ram');
+            const gpuDropdown = document.getElementById('gpu');
+            const storageDropdown = document.getElementById('storage');
+            const caseDropdown = document.getElementById('case');
+            const psuDropdown = document.getElementById('psu');
+
+            cpuDropdown.innerHTML = '';
+            motherboardDropdown.innerHTML = '';
+            ramDropdown.innerHTML = '';
+            gpuDropdown.innerHTML = '';
+            storageDropdown.innerHTML = '';
+            caseDropdown.innerHTML = '';
+            psuDropdown.innerHTML = '';
+
+            const selectedBrand = document.getElementById('cpu-brand').value;
+            parts[selectedBrand].cpus.forEach(part => {
+                cpuDropdown.innerHTML += `<option value="${part.name}" data-price="${part.price}" data-link="${part.link}">${part.name} - $${part.price}</option>`;
+            });
+
+            parts[selectedBrand].motherboards.forEach(part => {
+                motherboardDropdown.innerHTML += `<option value="${part.name}" data-price="${part.price}" data-link="${part.link}">${part.name} - $${part.price}</option>`;
+            });
+
+            parts[selectedBrand].rams.forEach(part => {
+                ramDropdown.innerHTML += `<option value="${part.name}" data-price="${part.price}" data-link="${part.link}">${part.name} - $${part.price}</option>`;
+            });
+
+            parts[selectedBrand].gpus.forEach(part => {
+                gpuDropdown.innerHTML += `<option value="${part.name}" data-price="${part.price}" data-link="${part.link}">${part.name} - $${part.price}</option>`;
+            });
+
+            parts[selectedBrand].storage.forEach(part => {
+                storageDropdown.innerHTML += `<option value="${part.name}" data-price="${part.price}" data-link="${part.link}">${part.name} - $${part.price}</option>`;
+            });
+
+            parts[selectedBrand].cases.forEach(part => {
+                caseDropdown.innerHTML += `<option value="${part.name}" data-price="${part.price}" data-link="${part.link}">${part.name} - $${part.price}</option>`;
+            });
+
+            parts[selectedBrand].psus.forEach(part => {
+                psuDropdown.innerHTML += `<option value="${part.name}" data-price="${part.price}" data-link="${part.link}">${part.name} - $${part.price}</option>`;
+            });
+
+            // Automatically select the first options after population
+            cpuDropdown.value = cpuDropdown.options[0].value;
+            motherboardDropdown.value = motherboardDropdown.options[0].value;
+            ramDropdown.value = ramDropdown.options[0].value;
+            gpuDropdown.value = gpuDropdown.options[0].value;
+            storageDropdown.value = storageDropdown.options[0].value;
+            caseDropdown.value = caseDropdown.options[0].value;
+            psuDropdown.value = psuDropdown.options[0].value;
+
+            updateSelectedPart('cpu');
+            updateSelectedPart('motherboard');
+            updateSelectedPart('ram');
+            updateSelectedPart('gpu');
+            updateSelectedPart('storage');
+            updateSelectedPart('case');
+            updateSelectedPart('psu');
+        }
+
+        function updateSelectedPart(part) {
+            const dropdown = document.getElementById(part);
+            const selectedOption = dropdown.options[dropdown.selectedIndex];
+            const partInfoDiv = document.getElementById(`selected-${part}`);
+            const price = selectedOption.getAttribute('data-price');
+            const link = selectedOption.getAttribute('data-link');
+
+            partInfoDiv.innerHTML = `${selectedOption.value} - $${price} <a href="${link}" target="_blank">Buy</a>`;
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            const selectedParts = ['cpu', 'motherboard', 'ram', 'gpu', 'storage', 'case', 'psu'];
+
+            selectedParts.forEach(part => {
+                const dropdown = document.getElementById(part);
+                const selectedOption = dropdown.options[dropdown.selectedIndex];
+                total += parseFloat(selectedOption.getAttribute('data-price'));
+            });
+
+            document.getElementById('total').innerHTML = `Total Price: $${total.toFixed(2)}`;
+        }
+
+        function recommendParts() {
+            const budget = parseInt(document.getElementById('budget').value);
+            const selectedBrand = document.getElementById('cpu-brand').value;
+            const recommendedParts = {
+                cpu: parts[selectedBrand].cpus[0],
+                motherboard: parts[selectedBrand].motherboards[0],
+                ram: parts[selectedBrand].rams[0],
+                gpu: parts[selectedBrand].gpus[0],
+                storage: parts[selectedBrand].storage[0],
+                case: parts[selectedBrand].cases[0],
+                psu: parts[selectedBrand].psus[0]
+            };
+
+            let totalCost = 0;
+            Object.keys(recommendedParts).forEach(part => {
+                totalCost += recommendedParts[part].price;
+            });
+
+            if (totalCost <= budget) {
+                Object.keys(recommendedParts).forEach(part => {
+                    const dropdown = document.getElementById(part);
+                    dropdown.value = recommendedParts[part].name;
+                    updateSelectedPart(part);
+                });
+            } else {
+                alert("No parts can be recommended within the selected budget.");
+            }
+        }
+
+        function updateCpuOptions() {
+            populateDropdowns();
+        }
+
+        window.onload = function() {
+            populateDropdowns();
+        };
+    </script>
+</body>
+</html>
 
