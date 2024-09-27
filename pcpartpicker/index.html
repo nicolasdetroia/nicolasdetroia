@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Part Picker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>PC Parts Picker</h1>
+        <p>Enter your budget to get tailored recommendations!</p>
+    </header>
+    
+    <section id="budget-section">
+        <label for="budget-input">Enter Your Budget ($):</label>
+        <input type="number" id="budget-input" placeholder="500-3000">
+        <button id="get-recommendations">Get Recommendations</button>
+    </section>
+
+    <section id="recommendations-section">
+        <h2>Recommended Parts</h2>
+        <div id="recommendations"></div>
+    </section>
+
+    <section id="summary">
+        <h2>Build Summary</h2>
+        <div id="build-summary"></div>
+    </section>
+
+    <footer>
+        <p>Powered by Nicolas DeTroia</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
