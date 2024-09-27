@@ -1,4 +1,4 @@
-# NeonFuze 1.0
+# Nicolas DeTroia 
 
 [Finance Manager Source Code](Finance-Manager.html)
 
