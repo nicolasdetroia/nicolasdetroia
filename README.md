@@ -1,34 +1,53 @@
-# Nicolas DeTroia 
+# Nicolas DeTroia - Portfolio Website
+# Last Updated 9/27/2024
 
-[Finance Manager Source Code](Finance-Manager.html)
+Welcome to my portfolio website! This is a showcase of my skills, projects, and experiences in **Computer Science**, **Economics**, and **Statistics**.
 
+## 🌐 Website
 
+**[nicolasdetroia.com](https://nicolasdetroia.com)**
 
-## Description
+The website is built to present my professional background, highlight key projects, and provide insights into my academic journey and extracurricular activities. I aim to demonstrate my skills in web development, economics, and programming through this portfolio.
 
-This project implements [briefly describe the main functionality or purpose of the project, e.g., "a simple web application that allows users to track their tasks."] The implementation is designed to be user-friendly and efficient, leveraging modern web technologies.
+---
 
-## HTML Documentation
+## 🚀 Key Features
 
-For detailed documentation, including usage examples and implementation details, please refer to the following HTML file:
+- **Personal Bio**: A brief introduction of who I am, my academic journey, and professional experiences.
+- **Projects**: A detailed overview of projects I've worked on, such as:
+  - **Financial Budgeting Tool**: A JavaScript-based tool that visualizes budget allocations through a pie chart.
+  - **PC Parts Picker**: A web project recommending PC builds with budgets ranging from $500 to $3000, complete with Amazon affiliate links.
+- **Contact Section**: Easy-to-use contact form for business inquiries or networking.
+  
+---
 
-[View the HTML documentation](docs/index.html)
+## 💻 Technologies Used
 
-## Implementation Details
+- **HTML5**, **CSS3**, **JavaScript**
+- **Responsive Design** for both mobile and desktop viewing
+- **Amazon Affiliate API** integration for PC parts recommendations
+- **Domain and DNS Configuration**: Fully managed through personal DNS implementation with **IPv6** and **HTTPS** security protocols.
 
-- **Technology Stack**: [List the main technologies used, e.g., "HTML, CSS, JavaScript, and Python."]
-- **Features**: [List key features or functionalities, e.g., "User authentication, task creation, and deadline management."]
-- **Installation Instructions**: [Provide any instructions needed to set up the project, e.g., "Clone the repository and run `npm install` to install dependencies."]
+---
 
-## Usage
+## 📈 Future Updates
 
-[Provide usage instructions or examples.]
+I am continuously improving and adding new content and features to the site. Future updates include:
+- Expansion of the **PC Parts Picker** to include more advanced customization options.
+- A blog section focused on tech, finance, and economics.
+- Further integration of interactive elements to engage users more effectively.
 
-## Contributing
+---
 
-[Include any guidelines for contributing to the project, e.g., "Please open an issue or submit a pull request for any improvements or bug fixes."]
+## 👨‍💼 About Me
 
-        });
-    </script>
-</body>
-</html>
+I’m pursuing a **Bachelor of Arts in Economics** with minors in **Computer Science** and **Statistics** at **The College of New Jersey**. I have experience in a variety of programming languages such as **C++**, **Python**, **Java**, and **R**, and I’m always looking to expand my knowledge and work on exciting new projects.
+
+Feel free to connect with me through my website or on [LinkedIn](https://linkedin.com/in/nicolasdetroia)!
+
+---
+
+## 📫 Contact
+
+- **Website**: [nicolasdetroia.com](https://nicolasdetroia.com)
+- **Email**: [Your Email Here]
