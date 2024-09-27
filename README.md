@@ -2,6 +2,8 @@
 
 [Finance Manager Source Code](Finance-Manager.html)
 
+https://neonfuze.github.io/NeonFuze-1.0/Finance-Manager.html
+
 ## Description
 
 This project implements [briefly describe the main functionality or purpose of the project, e.g., "a simple web application that allows users to track their tasks."] The implementation is designed to be user-friendly and efficient, leveraging modern web technologies.
