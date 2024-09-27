@@ -1,0 +1,100 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding-bottom: 60px; /* Prevent content from hiding behind footer */
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #0078d4;
+    color: white;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+}
+
+#budget-section {
+    text-align: center;
+    margin: 20px;
+}
+
+#budget-input {
+    width: 300px; /* Increased width for better usability */
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#recommendations-section {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #0078d4;
+    margin-bottom: 15px;
+}
+
+#recommendations {
+    margin-top: 20px;
+}
+
+.part {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fafafa; /* Light background for parts */
+    transition: background-color 0.2s ease; /* Smooth background change */
+}
+
+.part:hover {
+    background-color: #e7f3ff; /* Change background on hover */
+}
+
+.part:last-child {
+    border-bottom: none;
+}
+
+.part img {
+    max-width: 100px; /* Limit image size */
+    border-radius: 5px; /* Rounded corners for images */
+}
+
+.part-info {
+    flex-grow: 1; /* Allow this to fill remaining space */
+    padding-left: 15px; /* Space between image and text */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #0078d4;
+    color: white;
+    position: relative;
+    width: 100%;
+    left: 0;
+}
+
+@media (max-width: 600px) {
+    #budget-input {
+        width: 100%; /* Full-width input on small screens */
+    }
+
+    .part {
+        flex-direction: column; /* Stack parts vertically on smaller screens */
+        align-items: flex-start; /* Align text to the left */
+        padding: 10px; /* Reduced padding */
+    }
+
+    .part img {
+        max-width: 80px; /* Smaller images on small screens */
+    }
+}
