@@ -2,7 +2,7 @@
 
 [Finance Manager Source Code](Finance-Manager.html)
 
-https://neonfuze.github.io/NeonFuze-1.0/Finance-Manager.html
+
 
 ## Description
 
