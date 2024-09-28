@@ -14,8 +14,9 @@ The website is built to present my professional background, highlight key projec
 - **Personal Bio**: A brief introduction of who I am, my academic journey, and professional experiences.
 - **Projects**: A detailed overview of projects I've worked on, such as:
   - **Financial Budgeting Tool**: A JavaScript-based tool that visualizes budget allocations through a pie chart.
+  - [Financial Manager](https://nicolasdetroia.github.io/nicolasdetroia/Finance-Manager.html)
   - **PC Parts Picker**: A web project recommending PC builds with budgets ranging from $500 to $3000, complete with Amazon affiliate links.
-  - [PcPartPicker]([https://www.nicolasdetroia.com/portfolio.html](https://nicolasdetroia.github.io/nicolasdetroia/pcpartpicker/))
+  - [Pc Part Picker](https://www.nicolasdetroia.com/portfolio.html)
 - **Contact Section**: Easy-to-use contact form for business inquiries or networking.
   
 ---
