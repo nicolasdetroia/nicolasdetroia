@@ -50,4 +50,4 @@ Feel free to connect with me through my website or on [LinkedIn](https://linkedi
 ## 📫 Contact
 
 - **Website**: [nicolasdetroia.com](https://nicolasdetroia.com)
-- **Email**: detroin1@tcnj.edu
+- **Email**: ndetroia@gmail.com
