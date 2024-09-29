@@ -41,7 +41,7 @@ I am continuously improving and adding new content and features to the site. Fut
 
 ## 👨‍💼 About Me
 
-I’m pursuing a **Bachelor of Arts in Economics** with minors in **Computer Science** and **Statistics** at **The College of New Jersey**. I have experience in a variety of programming languages such as **C++**, **Python**, **Java**, and **R**, and I’m always looking to expand my knowledge and work on exciting new projects.
+I’m pursuing a **Bachelor of Arts in Economics** with possible minors in **Computer Science** and **Statistics**.
 
 Feel free to connect with me through my website or on [LinkedIn](https://linkedin.com/in/nicolasdetroia)!
 
@@ -50,4 +50,4 @@ Feel free to connect with me through my website or on [LinkedIn](https://linkedi
 ## 📫 Contact
 
 - **Website**: [nicolasdetroia.com](https://nicolasdetroia.com)
-- **Email**: ndetroia@gmail.com
+- **Email**: not available 
