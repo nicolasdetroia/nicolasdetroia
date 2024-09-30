@@ -17,10 +17,9 @@ The website is built to present my professional background, highlight key projec
   - [Financial Manager](https://nicolasdetroia.github.io/nicolasdetroia/Finance-Manager.html)
   - **PC Parts Picker**: A web project recommending PC builds with budgets ranging from $500 to $3000, complete with Amazon affiliate links.
   - [Pc Part Picker](https://nicolasdetroia.github.io/nicolasdetroia/pcpartpicker/)
-- **Contact Section**: Easy-to-use contact form for business inquiries or networking.
 - **Online Resume**: Website for my Resume.
 - [Resume](https://nicolasdetroia.github.io/nicolasdetroia/Finance-Manager.html)
-  
+- **Contact Section**: Contact Section for Networking
 ---
 
 ## 💻 Technologies Used
