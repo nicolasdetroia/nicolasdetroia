@@ -1,5 +1,5 @@
 # Nicolas DeTroia 
-**Last Updated 9/27/2024**
+**Last Updated 10/01/2024**
 
 ## 🌐 Website
 
