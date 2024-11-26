@@ -1,4 +1,4 @@
-# A Multifaceted Journey: Connecting the Dots Between Economics, Technology, and Empathy
+# A Multifaceted Journey:
 
 ## Introduction
 Individuals in today's dynamic world are molded through a complex tapestry of education, experiences in a job setting, and personal growth. Nicolas DeTroia's journey through academia, technology, and volunteer work has been synonymous with such intricacy. Nicolas pursued his undergraduate studies in Economics from The College of New Jersey, TCNJ, balancing this technical course with a minor in Computer Science and Statistics. This uniquely combines technical know-how and social awareness. Projects in web development and data analysis, volunteer work in mental health services—this portfolio reveals a person so well-rounded and ready to make much more than just a contribution to society.
